@@ -1,15 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:shaas_grocery_app/features/home/bloc/home_bloc.dart';
 import 'package:shaas_grocery_app/features/home/models/home_product_data_model.dart';
+import 'package:shaas_grocery_app/features/wishlist/bloc/wishlist_bloc.dart';
 
-class ProductTileWidget extends StatelessWidget {
+class WishlistTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
-  final HomeBloc homeBloc;
-  const ProductTileWidget({
+  final WishlistBloc wishlistBloc;
+  const WishlistTileWidget({
     super.key,
     required this.productDataModel,
-    required this.homeBloc,
+    required this.wishlistBloc,
   });
 
   @override
@@ -106,22 +106,22 @@ class ProductTileWidget extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  homeBloc.add(
-                                    HomeProductWishlistButtonClickedEvent(
-                                      clickedProduct: productDataModel,
-                                    ),
-                                  );
+                                  // homeBloc.add(
+                                  //   HomeProductWishlistButtonClickedEvent(
+                                  //     clickedProduct: productDataModel,
+                                  //   ),
+                                  // );
                                 },
-                                icon: Icon(Icons.favorite_border_rounded),
+                                icon: Icon(Icons.favorite_sharp),
                                 color: Colors.white,
                               ),
                               IconButton(
                                 onPressed: () {
-                                  homeBloc.add(
-                                    HomeProductCartButtonClickedEvent(
-                                      clickedProduct: productDataModel,
-                                    ),
-                                  );
+                                  // homeBloc.add(
+                                  //   HomeProductCartButtonClickedEvent(
+                                  //     clickedProduct: productDataModel,
+                                  //   ),
+                                  // );
                                 },
                                 icon: Icon(
                                   Icons.shopping_bag_outlined,

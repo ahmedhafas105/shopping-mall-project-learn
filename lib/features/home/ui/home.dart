@@ -38,6 +38,50 @@ class _HomeState extends State<Home> {
             context,
             MaterialPageRoute(builder: (context) => Cart()),
           );
+        } else if (state is HomeProductAddedWishlistState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Item Added to Wishlist!'),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Color(0xFF141E30),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: const BorderSide(
+                  color: Color(0xFF243B55),
+                  width: 1,
+                ), // Optional border
+              ),
+              action: SnackBarAction(
+                label: 'UNDO',
+                onPressed: () {
+                  debugPrint("Item removed from wishlist");
+                },
+              ),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        } else if (state is HomeProductAddedCartState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Item Added to Cart!'),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Color(0xFF141E30),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: const BorderSide(
+                  color: Color(0xFF243B55),
+                  width: 1,
+                ), // Optional border
+              ),
+              duration: const Duration(seconds: 2),
+              action: SnackBarAction(
+                label: 'UNDO',
+                onPressed: () {
+                  debugPrint("Item removed from cart");
+                },
+              ),
+            ),
+          );
         }
       },
       builder: (context, state) {
@@ -48,7 +92,7 @@ class _HomeState extends State<Home> {
             ),
           );
         } else if (state is HomeLoadedSuccessState) {
-          final successState = state as HomeLoadedSuccessState;
+          final successState = state;
           return Scaffold(
             appBar: AppBar(
               title: Text("Shaas Grocery App"),
@@ -64,7 +108,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     homeBloc.add(HomeCartButtonNavigateEvent());
                   },
-                  icon: Icon(Icons.shopping_cart_checkout_rounded),
+                  icon: Icon(Icons.shopping_bag_outlined),
                 ),
               ],
             ),
@@ -80,7 +124,8 @@ class _HomeState extends State<Home> {
                 itemCount: successState.products.length,
                 itemBuilder: (context, index) {
                   return ProductTileWidget(
-                    productDataModel: successState.products[index]
+                    homeBloc: homeBloc,
+                    productDataModel: successState.products[index],
                   );
                 },
               ),
