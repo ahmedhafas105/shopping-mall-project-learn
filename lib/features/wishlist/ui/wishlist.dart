@@ -32,7 +32,7 @@ class _WishlistState extends State<Wishlist> {
         buildWhen: (previous, current) => current is! WishlistActionState,
         builder: (context, state) {
           if (state is WishlistSuccessState) {
-            final successState = state as WishlistSuccessState;
+            final successState = state;
             return Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(

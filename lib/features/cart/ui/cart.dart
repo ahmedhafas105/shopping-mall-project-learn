@@ -33,7 +33,7 @@ class _CartState extends State<Cart> {
         buildWhen: (previous, current) => current is! CartActionState,
         builder: (context, state) {
           if (state is CartSuccessState) {
-            final successState = state as CartSuccessState;
+            final successState = state;
             return Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(

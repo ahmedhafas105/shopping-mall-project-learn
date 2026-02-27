@@ -106,27 +106,14 @@ class WishlistTileWidget extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  // homeBloc.add(
-                                  //   HomeProductWishlistButtonClickedEvent(
-                                  //     clickedProduct: productDataModel,
-                                  //   ),
-                                  // );
+                                  wishlistBloc.add(
+                                    ItemRemoteFromWishlistEvent(
+                                      productDataModel: productDataModel,
+                                    ),
+                                  );
                                 },
                                 icon: Icon(Icons.favorite_sharp),
                                 color: Colors.white,
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  // homeBloc.add(
-                                  //   HomeProductCartButtonClickedEvent(
-                                  //     clickedProduct: productDataModel,
-                                  //   ),
-                                  // );
-                                },
-                                icon: Icon(
-                                  Icons.shopping_bag_outlined,
-                                  color: Colors.white,
-                                ),
                               ),
                             ],
                           ),
